@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Mrchangchang.github.io</id>
     <title>Gridea</title>
-    <updated>2020-11-07T17:06:41.202Z</updated>
+    <updated>2020-11-11T03:30:38.059Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Mrchangchang.github.io"/>
     <link rel="self" href="https://Mrchangchang.github.io/atom.xml"/>
@@ -10,6 +10,79 @@
     <logo>https://Mrchangchang.github.io/images/avatar.png</logo>
     <icon>https://Mrchangchang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[简单zip压缩webpack plugin插件]]></title>
+        <id>https://Mrchangchang.github.io/post/jian-dan-zip-ya-suo-webpack-plugin-cha-jian/</id>
+        <link href="https://Mrchangchang.github.io/post/jian-dan-zip-ya-suo-webpack-plugin-cha-jian/">
+        </link>
+        <updated>2020-11-11T03:25:29.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>功能很简单，webpack压缩成功后输入一个zip的压缩包</p>
+</blockquote>
+<pre><code>const fs = require('fs')
+const archiver = require('archiver')
+const path = require('path')
+const rm = require('rimraf')
+
+
+class ZipWebpackPlugin {
+  constructor (option = {}) {
+    this.dir = option.dir
+  }
+  apply(compiler) {
+    compiler.hooks.afterEmit.tapAsync('zipWebpackPlug', (compilation, cb) =&gt; {
+      
+      const currentPath = path.resolve(__dirname, this.dir)
+      
+      console.log( '输入路径:%S',currentPath);
+      function done (currentPath) {
+        const outputName = path.basename(currentPath)
+        const output = fs.createWriteStream(`${currentPath}.zip`)
+        const archive = archiver('zip')
+        output.on('close', function () {
+          console.log('压缩完成')
+        })
+        output.on('end', function () {
+          console.log('压缩完成')
+        })
+        archive.on('err', function (err) {
+          throw err
+        })
+        archive.pipe(output)
+        archive.glob(`${outputName}/**`)
+        archive.finalize()
+      }
+      if (fs.existsSync(`${this.dir}.zip`)) {
+        console.log('删除zip包')
+        rm(`${this.dir}.zip`, err =&gt; {
+          if (err) throw err
+         done(currentPath)
+         cb()
+        })
+      } else {
+        done(currentPath)
+        cb()
+      }
+      
+      
+    })
+  }
+}
+
+module.exports = ZipWebpackPlugin
+</code></pre>
+<blockquote>
+<p>在webpack配置中使用</p>
+</blockquote>
+<p>···<br>
+module.exports = {<br>
+plugin: [<br>
+new ZipPlugin({dir: path.join(__dirname, outputDir)})<br>
+]<br>
+}<br>
+···</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://Mrchangchang.github.io/post/hello-gridea/</id>

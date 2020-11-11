@@ -2,23 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>简单zip压缩webpack plugin插件 | Gridea</title>
 <link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1605065429856">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Mrchangchang.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="简单zip压缩webpack plugin插件 | Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
     <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+功能很简单，webpack压缩成功后输入一个zip的压缩包
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+const fs = require('fs')
+const archiver = require('archiver')
+const path = require('path..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -81,11 +79,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              简单zip压缩webpack plugin插件
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-11-11
               </span>
               <span>
                 1 min read
@@ -96,31 +94,88 @@
             <div class="post-content-wrapper">
               <div class="post-content">
                 <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+<p>功能很简单，webpack压缩成功后输入一个zip的压缩包</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<pre><code>const fs = require('fs')
+const archiver = require('archiver')
+const path = require('path')
+const rm = require('rimraf')
+
+
+class ZipWebpackPlugin {
+  constructor (option = {}) {
+    this.dir = option.dir
+  }
+  apply(compiler) {
+    compiler.hooks.afterEmit.tapAsync('zipWebpackPlug', (compilation, cb) =&gt; {
+      
+      const currentPath = path.resolve(__dirname, this.dir)
+      
+      console.log( '输入路径:%S',currentPath);
+      function done (currentPath) {
+        const outputName = path.basename(currentPath)
+        const output = fs.createWriteStream(`${currentPath}.zip`)
+        const archive = archiver('zip')
+        output.on('close', function () {
+          console.log('压缩完成')
+        })
+        output.on('end', function () {
+          console.log('压缩完成')
+        })
+        archive.on('err', function (err) {
+          throw err
+        })
+        archive.pipe(output)
+        archive.glob(`${outputName}/**`)
+        archive.finalize()
+      }
+      if (fs.existsSync(`${this.dir}.zip`)) {
+        console.log('删除zip包')
+        rm(`${this.dir}.zip`, err =&gt; {
+          if (err) throw err
+         done(currentPath)
+         cb()
+        })
+      } else {
+        done(currentPath)
+        cb()
+      }
+      
+      
+    })
+  }
+}
+
+module.exports = ZipWebpackPlugin
+</code></pre>
+<blockquote>
+<p>在webpack配置中使用</p>
+</blockquote>
+<p>···<br>
+module.exports = {<br>
+plugin: [<br>
+new ZipPlugin({dir: path.join(__dirname, outputDir)})<br>
+]<br>
+}<br>
+···</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Mrchangchang.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
         
 
         
