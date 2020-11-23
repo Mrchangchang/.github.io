@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Mrchangchang.github.io</id>
     <title>Gridea</title>
-    <updated>2020-11-23T16:59:24.523Z</updated>
+    <updated>2020-11-23T17:00:48.630Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Mrchangchang.github.io"/>
     <link rel="self" href="https://Mrchangchang.github.io/atom.xml"/>
@@ -81,9 +81,9 @@ $ yarn dev
         <link href="https://Mrchangchang.github.io/post/uglifyjs-webpack-plugin-cha-jian-fei-qi-gai-yong-uglifyjs-webpack-plugin/">
         </link>
         <updated>2020-11-11T09:04:57.000Z</updated>
-        <summary type="html"><![CDATA[<p>uglifyjs-webpack-plugin压缩es6代码报错，后续也不会更新，改用uglifyjs-webpack-plugin压缩代码,配置如下，</p>
-<blockquote>
-<p>详细配置说明：https://github.com/terser/terser#compress-options</p>
+        <content type="html"><![CDATA[<blockquote>
+<p>uglifyjs-webpack-plugin压缩es6代码报错，后续也不会更新，改用uglifyjs-webpack-plugin&gt;压缩代码,配置如下，<br>
+详细配置说明：https://github.com/terser/terser#compress-options</p>
 </blockquote>
 <pre><code class="language-js">const TerserPlugin = require(&quot;terser-webpack-plugin&quot;);
 module.exports = {
@@ -100,27 +100,6 @@ module.exports = {
   }
 }
 </code></pre>
-]]></summary>
-        <content type="html"><![CDATA[<p>uglifyjs-webpack-plugin压缩es6代码报错，后续也不会更新，改用uglifyjs-webpack-plugin压缩代码,配置如下，</p>
-<blockquote>
-<p>详细配置说明：https://github.com/terser/terser#compress-options</p>
-</blockquote>
-<pre><code class="language-js">const TerserPlugin = require(&quot;terser-webpack-plugin&quot;);
-module.exports = {
-  configureWebpack: {
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          compress: {
-            pure_funcs: [&quot;console.log&quot;]
-          }
-        }
-      })
-    ]
-  }
-}
-</code></pre>
-<!-- more -->
 <p>来源：https://segmentfault.com/a/1190000020185466?utm_source=tag-newest</p>
 ]]></content>
     </entry>

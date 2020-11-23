@@ -3,7 +3,7 @@
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>webpack | Gridea</title>
-<link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1606150757187">
+<link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1606150839388">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Mrchangchang.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="webpack | Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
@@ -18,7 +18,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://Mrchangchang.github.io">
-  <img class="avatar" src="https://Mrchangchang.github.io/images/avatar.png?v=1606150757187" alt="">
+  <img class="avatar" src="https://Mrchangchang.github.io/images/avatar.png?v=1606150839388" alt="">
   </a>
   <h1 class="site-title">
     Gridea
@@ -94,26 +94,7 @@
       </div>
       
       <div class="post-abstract">
-        <p>uglifyjs-webpack-plugin压缩es6代码报错，后续也不会更新，改用uglifyjs-webpack-plugin压缩代码,配置如下，</p>
-<blockquote>
-<p>详细配置说明：https://github.com/terser/terser#compress-options</p>
-</blockquote>
-<pre><code class="language-js">const TerserPlugin = require(&quot;terser-webpack-plugin&quot;);
-module.exports = {
-  configureWebpack: {
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          compress: {
-            pure_funcs: [&quot;console.log&quot;]
-          }
-        }
-      })
-    ]
-  }
-}
-</code></pre>
-
+        
       </div>
     </article>
   
