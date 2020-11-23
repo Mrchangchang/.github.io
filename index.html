@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gridea</title>
-<link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1605085615703">
+<link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1606150585268">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Mrchangchang.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
@@ -18,7 +18,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://Mrchangchang.github.io">
-  <img class="avatar" src="https://Mrchangchang.github.io/images/avatar.png?v=1605085615703" alt="">
+  <img class="avatar" src="https://Mrchangchang.github.io/images/avatar.png?v=1606150585268" alt="">
   </a>
   <h1 class="site-title">
     Gridea
@@ -72,6 +72,25 @@
         <div class="post-container">
   
     <article class="post">
+      <a href="https://Mrchangchang.github.io/post/da-jian-yi-ge-yi-dong-duan-vitets-xiang-mu/">
+        <h2 class="post-title">搭建一个移动端vite+ts项目</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-11-20
+        </span>
+        <span>
+          1 min read
+        </span>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+    <article class="post">
       <a href="https://Mrchangchang.github.io/post/uglifyjs-webpack-plugin-cha-jian-fei-qi-gai-yong-uglifyjs-webpack-plugin/">
         <h2 class="post-title">uglifyjs-webpack-plugin 插件废弃，改用uglifyjs-webpack-plugin </h2>
       </a>
@@ -83,10 +102,33 @@
           1 min read
         </span>
         
+          <a href="https://Mrchangchang.github.io/tag/D-OVHUDdn/" class="post-tag">
+            # webpack
+          </a>
+        
       </div>
       
       <div class="post-abstract">
-        
+        <p>uglifyjs-webpack-plugin压缩es6代码报错，后续也不会更新，改用uglifyjs-webpack-plugin压缩代码,配置如下，</p>
+<blockquote>
+<p>详细配置说明：https://github.com/terser/terser#compress-options</p>
+</blockquote>
+<pre><code>const TerserPlugin = require(&quot;terser-webpack-plugin&quot;);
+module.exports = {
+  configureWebpack: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            pure_funcs: [&quot;console.log&quot;]
+          }
+        }
+      })
+    ]
+  }
+}
+</code></pre>
+
       </div>
     </article>
   
