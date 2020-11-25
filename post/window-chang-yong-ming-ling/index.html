@@ -2,22 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>简单zip压缩webpack plugin插件 | Gridea</title>
+<title>window常用命令 | Gridea</title>
 <link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1606323844695">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Mrchangchang.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="简单zip压缩webpack plugin插件 | Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="window常用命令 | Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-功能很简单，webpack压缩成功后输入一个zip的压缩包
+    <meta name="description" content="查看电脑连接的wifi
 
-const fs = require('fs')
-const archiver = require('archiver')
-const path = require('path..." />
-    <meta name="keywords" content="webpack" />
+netsh wlan show profiles  然后 netsh wlan show profile name=&quot;连接名&quot; key=clear
+
+..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -79,92 +78,39 @@ const path = require('path..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              简单zip压缩webpack plugin插件
+              window常用命令
             </h2>
             <div class="post-info">
               <span>
-                2020-11-11
+                2020-11-24
               </span>
               <span>
                 1 min read
               </span>
               
-                <a href="https://Mrchangchang.github.io/tag/D-OVHUDdn/" class="post-tag">
-                  # webpack
-                </a>
-              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>功能很简单，webpack压缩成功后输入一个zip的压缩包</p>
-</blockquote>
-<pre><code class="language-js">const fs = require('fs')
-const archiver = require('archiver')
-const path = require('path')
-const rm = require('rimraf')
-
-class ZipWebpackPlugin {
-  constructor (option = {}) {
-    this.dir = option.dir
-  }
-  apply(compiler) {
-    compiler.hooks.afterEmit.tapAsync('zipWebpackPlug', (compilation, cb) =&gt; {
-      
-      const currentPath = path.resolve(__dirname, this.dir)
-      
-      console.log( '输入路径:%S',currentPath);
-      function done (currentPath) {
-        const outputName = path.basename(currentPath)
-        const output = fs.createWriteStream(`${currentPath}.zip`)
-        const archive = archiver('zip')
-        output.on('close', function () {
-          console.log('压缩完成')
-        })
-        output.on('end', function () {
-          console.log('压缩完成')
-        })
-        archive.on('err', function (err) {
-          throw err
-        })
-        archive.pipe(output)
-        archive.glob(`${outputName}/**`)
-        archive.finalize()
-      }
-      if (fs.existsSync(`${this.dir}.zip`)) {
-        console.log('删除zip包')
-        rm(`${this.dir}.zip`, err =&gt; {
-          if (err) throw err
-         done(currentPath)
-         cb()
-        })
-      } else {
-        done(currentPath)
-        cb()
-      }
-      
-      
-    })
-  }
-}
-
-module.exports = ZipWebpackPlugin
-</code></pre>
+                <h3 id="查看电脑连接的wifi">查看电脑连接的wifi</h3>
 <blockquote>
-<p>在webpack配置中使用</p>
+<p>netsh wlan show profiles  然后 netsh wlan show profile name=&quot;连接名&quot; key=clear</p>
 </blockquote>
-<p>···<br>
-module.exports = {<br>
-plugin: [<br>
-new ZipPlugin({dir: path.join(__dirname, outputDir)})<br>
-]<br>
-}<br>
-···</p>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E7%9A%84wifi">查看电脑连接的wifi</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -173,9 +119,9 @@ new ZipPlugin({dir: path.join(__dirname, outputDir)})<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://Mrchangchang.github.io/post/hello-gridea/">
+            <a href="https://Mrchangchang.github.io/post/nodejs-chang-yong-npm-bao-he-ji/">
               <h3 class="post-title">
-                Hello Gridea
+                nodeJs常用npm包合集
               </h3>
             </a>
           </div>

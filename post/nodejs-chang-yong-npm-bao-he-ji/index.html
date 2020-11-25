@@ -2,22 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>简单zip压缩webpack plugin插件 | Gridea</title>
+<title>nodeJs常用npm包合集 | Gridea</title>
 <link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1606323844695">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Mrchangchang.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="简单zip压缩webpack plugin插件 | Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="nodeJs常用npm包合集 | Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
     <meta name="description" content="
-功能很简单，webpack压缩成功后输入一个zip的压缩包
+chalk 粉笔工具
+fs-extra fs-extra模块是系统fs模块的扩展，提供了更多便利的 API，并继承了fs模块的 AP，参考文章
 
-const fs = require('fs')
-const archiver = require('archiver')
-const path = require('path..." />
-    <meta name="keywords" content="webpack" />
+..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -79,88 +78,24 @@ const path = require('path..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              简单zip压缩webpack plugin插件
+              nodeJs常用npm包合集
             </h2>
             <div class="post-info">
               <span>
-                2020-11-11
+                2020-11-24
               </span>
               <span>
                 1 min read
               </span>
               
-                <a href="https://Mrchangchang.github.io/tag/D-OVHUDdn/" class="post-tag">
-                  # webpack
-                </a>
-              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>功能很简单，webpack压缩成功后输入一个zip的压缩包</p>
-</blockquote>
-<pre><code class="language-js">const fs = require('fs')
-const archiver = require('archiver')
-const path = require('path')
-const rm = require('rimraf')
-
-class ZipWebpackPlugin {
-  constructor (option = {}) {
-    this.dir = option.dir
-  }
-  apply(compiler) {
-    compiler.hooks.afterEmit.tapAsync('zipWebpackPlug', (compilation, cb) =&gt; {
-      
-      const currentPath = path.resolve(__dirname, this.dir)
-      
-      console.log( '输入路径:%S',currentPath);
-      function done (currentPath) {
-        const outputName = path.basename(currentPath)
-        const output = fs.createWriteStream(`${currentPath}.zip`)
-        const archive = archiver('zip')
-        output.on('close', function () {
-          console.log('压缩完成')
-        })
-        output.on('end', function () {
-          console.log('压缩完成')
-        })
-        archive.on('err', function (err) {
-          throw err
-        })
-        archive.pipe(output)
-        archive.glob(`${outputName}/**`)
-        archive.finalize()
-      }
-      if (fs.existsSync(`${this.dir}.zip`)) {
-        console.log('删除zip包')
-        rm(`${this.dir}.zip`, err =&gt; {
-          if (err) throw err
-         done(currentPath)
-         cb()
-        })
-      } else {
-        done(currentPath)
-        cb()
-      }
-      
-      
-    })
-  }
-}
-
-module.exports = ZipWebpackPlugin
-</code></pre>
-<blockquote>
-<p>在webpack配置中使用</p>
-</blockquote>
-<p>···<br>
-module.exports = {<br>
-plugin: [<br>
-new ZipPlugin({dir: path.join(__dirname, outputDir)})<br>
-]<br>
-}<br>
-···</p>
+                <ul>
+<li>chalk 粉笔工具</li>
+<li>fs-extra fs-extra模块是系统fs模块的扩展，提供了更多便利的 API，并继承了fs模块的 AP，<a href="https://blog.csdn.net/weixin_33968104/article/details/88005109">参考文章</a></li>
+</ul>
 
               </div>
               <div class="toc-container">
@@ -173,9 +108,9 @@ new ZipPlugin({dir: path.join(__dirname, outputDir)})<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://Mrchangchang.github.io/post/hello-gridea/">
+            <a href="https://Mrchangchang.github.io/post/da-jian-yi-ge-yi-dong-duan-vitets-xiang-mu/">
               <h3 class="post-title">
-                Hello Gridea
+                搭建一个移动端vite+ts项目
               </h3>
             </a>
           </div>

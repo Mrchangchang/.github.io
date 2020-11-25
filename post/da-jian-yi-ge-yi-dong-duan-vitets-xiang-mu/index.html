@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>搭建一个移动端vite+ts项目 | Gridea</title>
-<link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1606151026865">
+<link rel="shortcut icon" href="https://Mrchangchang.github.io/favicon.ico?v=1606323844695">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Mrchangchang.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="搭建一个移动端vite+ts项目 | Gridea - Atom Feed" href="https://Mrchangchang.github.io/atom.xml">
@@ -30,7 +30,7 @@ or 使..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://Mrchangchang.github.io">
-  <img class="avatar" src="https://Mrchangchang.github.io/images/avatar.png?v=1606151026865" alt="">
+  <img class="avatar" src="https://Mrchangchang.github.io/images/avatar.png?v=1606323844695" alt="">
   </a>
   <h1 class="site-title">
     Gridea
@@ -90,7 +90,7 @@ or 使..." />
                 2020-11-20
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
                 <a href="https://Mrchangchang.github.io/tag/X7WcDUcv-/" class="post-tag">
@@ -150,13 +150,50 @@ $ yarn dev
   }
  }
 </code></pre>
+<h3 id="alias别名配置问题">alias别名配置问题</h3>
+<blockquote>
+<p>vite 引入模块的时候 如果不是以./或者/开头的会被视为依赖，在前面加上/@modules/xxx来进行请求<br>
+vite 别名在vite.config.ts内配置,需要以 /开头</p>
+</blockquote>
+<pre><code class="language-js">module.exports = {
+    alias: {
+         '/@/': resolve(__dirname,'./src'),
+    }
+}
+</code></pre>
+<blockquote>
+<p>项目中使用</p>
+</blockquote>
+<pre><code>import baseConfig from '/@/config/config.base'
+</code></pre>
+<blockquote>
+<p>tsconfig.json 中配置</p>
+</blockquote>
+<pre><code class="language-json">{
+    &quot;compilerOptions&quot;: {
+        &quot;paths&quot;: {
+        &quot;/@/*&quot;: [
+            &quot;src/*&quot;
+             ]
+        }
+    }
+}
+</code></pre>
+<h3 id="ts中使用axios拦截器返回promis类型会提示不正确">ts中使用axios拦截器，返回Promis类型会提示不正确</h3>
+<blockquote>
+<p>解决方法，封装axios时给返回值进行断言</p>
+</blockquote>
+<pre><code class="language-js">((result as unknown) as Promise&lt;Data&gt;)
+</code></pre>
+<h3 id="vite项目html使用ejs模板插入代码问题使用插件">vite项目，html使用ejs模板插入代码问题，使用插件🐶</h3>
+<blockquote>
+<p><a href="https://github.com/anncwb/vite-plugin-html">使用插件</a></p>
+</blockquote>
 <ul>
-<li>
-<p><a href="https://zhuanlan.zhihu.com/p/176704807">vite readme文档翻译</a></p>
-</li>
-<li>
-<p><a href="https://github.com/vitejs/vite/blob/master/src/node/config.ts">vite.config.js配置参考 </a></p>
-</li>
+<li><a href="https://zhuanlan.zhihu.com/p/176704807">vite文档翻译</a></li>
+<li><a href="https://github.com/vitejs/vite/blob/master/src/node/config.ts">配置参考</a></li>
+<li><a href="http://www.wazhi.com.cn/SchoolManage/NewsDispatcher?NewsId=440f7377-b293-4243-b629-bbf90bdf5231&amp;SchoolId=1168&amp;action=singlenews">vite介绍</a></li>
+<li><a href="https://github.com/rollup/awesome">rollup插件</a></li>
 </ul>
 
               </div>
@@ -168,6 +205,9 @@ $ yarn dev
 <ul>
 <li><a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a></li>
 <li><a href="#%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE">参考配置</a></li>
+<li><a href="#alias%E5%88%AB%E5%90%8D%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98">alias别名配置问题</a></li>
+<li><a href="#ts%E4%B8%AD%E4%BD%BF%E7%94%A8axios%E6%8B%A6%E6%88%AA%E5%99%A8%E8%BF%94%E5%9B%9Epromis%E7%B1%BB%E5%9E%8B%E4%BC%9A%E6%8F%90%E7%A4%BA%E4%B8%8D%E6%AD%A3%E7%A1%AE">ts中使用axios拦截器，返回Promis类型会提示不正确</a></li>
+<li><a href="#vite%E9%A1%B9%E7%9B%AEhtml%E4%BD%BF%E7%94%A8ejs%E6%A8%A1%E6%9D%BF%E6%8F%92%E5%85%A5%E4%BB%A3%E7%A0%81%E9%97%AE%E9%A2%98%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6">vite项目，html使用ejs模板插入代码问题，使用插件🐶</a></li>
 </ul>
 </li>
 </ul>

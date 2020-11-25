@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Mrchangchang.github.io</id>
     <title>Gridea</title>
-    <updated>2020-11-23T17:03:49.733Z</updated>
+    <updated>2020-11-25T17:04:10.444Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Mrchangchang.github.io"/>
     <link rel="self" href="https://Mrchangchang.github.io/atom.xml"/>
@@ -10,6 +10,30 @@
     <logo>https://Mrchangchang.github.io/images/avatar.png</logo>
     <icon>https://Mrchangchang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[window常用命令]]></title>
+        <id>https://Mrchangchang.github.io/post/window-chang-yong-ming-ling/</id>
+        <link href="https://Mrchangchang.github.io/post/window-chang-yong-ming-ling/">
+        </link>
+        <updated>2020-11-24T09:42:06.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="查看电脑连接的wifi">查看电脑连接的wifi</h3>
+<blockquote>
+<p>netsh wlan show profiles  然后 netsh wlan show profile name=&quot;连接名&quot; key=clear</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[nodeJs常用npm包合集]]></title>
+        <id>https://Mrchangchang.github.io/post/nodejs-chang-yong-npm-bao-he-ji/</id>
+        <link href="https://Mrchangchang.github.io/post/nodejs-chang-yong-npm-bao-he-ji/">
+        </link>
+        <updated>2020-11-24T01:32:03.000Z</updated>
+        <content type="html"><![CDATA[<ul>
+<li>chalk 粉笔工具</li>
+<li>fs-extra fs-extra模块是系统fs模块的扩展，提供了更多便利的 API，并继承了fs模块的 AP，<a href="https://blog.csdn.net/weixin_33968104/article/details/88005109">参考文章</a></li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[搭建一个移动端vite+ts项目]]></title>
         <id>https://Mrchangchang.github.io/post/da-jian-yi-ge-yi-dong-duan-vitets-xiang-mu/</id>
@@ -65,13 +89,50 @@ $ yarn dev
   }
  }
 </code></pre>
+<h3 id="alias别名配置问题">alias别名配置问题</h3>
+<blockquote>
+<p>vite 引入模块的时候 如果不是以./或者/开头的会被视为依赖，在前面加上/@modules/xxx来进行请求<br>
+vite 别名在vite.config.ts内配置,需要以 /开头</p>
+</blockquote>
+<pre><code class="language-js">module.exports = {
+    alias: {
+         '/@/': resolve(__dirname,'./src'),
+    }
+}
+</code></pre>
+<blockquote>
+<p>项目中使用</p>
+</blockquote>
+<pre><code>import baseConfig from '/@/config/config.base'
+</code></pre>
+<blockquote>
+<p>tsconfig.json 中配置</p>
+</blockquote>
+<pre><code class="language-json">{
+    &quot;compilerOptions&quot;: {
+        &quot;paths&quot;: {
+        &quot;/@/*&quot;: [
+            &quot;src/*&quot;
+             ]
+        }
+    }
+}
+</code></pre>
+<h3 id="ts中使用axios拦截器返回promis类型会提示不正确">ts中使用axios拦截器，返回Promis类型会提示不正确</h3>
+<blockquote>
+<p>解决方法，封装axios时给返回值进行断言</p>
+</blockquote>
+<pre><code class="language-js">((result as unknown) as Promise&lt;Data&gt;)
+</code></pre>
+<h3 id="vite项目html使用ejs模板插入代码问题使用插件">vite项目，html使用ejs模板插入代码问题，使用插件🐶</h3>
+<blockquote>
+<p><a href="https://github.com/anncwb/vite-plugin-html">使用插件</a></p>
+</blockquote>
 <ul>
-<li>
-<p><a href="https://zhuanlan.zhihu.com/p/176704807">vite readme文档翻译</a></p>
-</li>
-<li>
-<p><a href="https://github.com/vitejs/vite/blob/master/src/node/config.ts">vite.config.js配置参考 </a></p>
-</li>
+<li><a href="https://zhuanlan.zhihu.com/p/176704807">vite文档翻译</a></li>
+<li><a href="https://github.com/vitejs/vite/blob/master/src/node/config.ts">配置参考</a></li>
+<li><a href="http://www.wazhi.com.cn/SchoolManage/NewsDispatcher?NewsId=440f7377-b293-4243-b629-bbf90bdf5231&amp;SchoolId=1168&amp;action=singlenews">vite介绍</a></li>
+<li><a href="https://github.com/rollup/awesome">rollup插件</a></li>
 </ul>
 ]]></content>
     </entry>
