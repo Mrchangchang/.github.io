@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Mrchangchang.github.io</id>
     <title>Gridea</title>
-    <updated>2020-12-02T10:15:42.296Z</updated>
+    <updated>2020-12-02T17:27:32.772Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Mrchangchang.github.io"/>
     <link rel="self" href="https://Mrchangchang.github.io/atom.xml"/>
@@ -28,10 +28,19 @@
         <link href="https://Mrchangchang.github.io/post/nodejs-chang-yong-npm-bao-he-ji/">
         </link>
         <updated>2020-11-24T01:32:03.000Z</updated>
-        <content type="html"><![CDATA[<ul>
+        <summary type="html"><![CDATA[<blockquote>
+<p>收藏平时工作中可能用到npm包。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>收藏平时工作中可能用到npm包。</p>
+</blockquote>
+<!-- more -->
+<ul>
 <li>chalk 粉笔工具</li>
 <li>fs-extra fs-extra模块是系统fs模块的扩展，提供了更多便利的 API，并继承了fs模块的 AP，<a href="https://blog.csdn.net/weixin_33968104/article/details/88005109">参考文章</a></li>
 <li>glob node的glob模块允许你使用 *等符号, 来写一个glob规则,像在shell里一样,获取匹配对应规则的文件. <a href="https://www.cnblogs.com/xinxingyu/p/5736244.html">参考文章</a></li>
+<li>svg-captcha 生成svg图片验证码；</li>
 </ul>
 ]]></content>
     </entry>
