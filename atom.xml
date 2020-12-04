@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Mrchangchang.github.io</id>
     <title>Gridea</title>
-    <updated>2020-12-02T17:37:22.630Z</updated>
+    <updated>2020-12-04T06:00:41.728Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Mrchangchang.github.io"/>
     <link rel="self" href="https://Mrchangchang.github.io/atom.xml"/>
@@ -18,7 +18,11 @@
         <updated>2020-11-24T09:42:06.000Z</updated>
         <content type="html"><![CDATA[<h3 id="查看电脑连接的wifi">查看电脑连接的wifi</h3>
 <blockquote>
-<p>netsh wlan show profiles  然后 netsh wlan show profile name=&quot;连接名&quot; key=clear</p>
+<p>输入<code>netsh wlan show profiles</code>  然后 <code>netsh wlan show profile name=&quot;连接名&quot; key=clear</code></p>
+</blockquote>
+<h3 id="修改启动项">修改启动项</h3>
+<blockquote>
+<p>开始菜单在搜索程序框中输入 <code>msconfig</code> 命令打开系统配置窗口后找到 <code>启动</code> 选项</p>
 </blockquote>
 ]]></content>
     </entry>
