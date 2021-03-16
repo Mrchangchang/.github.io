@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Mrchangchang.github.io</id>
     <title>Gridea</title>
-    <updated>2021-01-13T16:33:43.805Z</updated>
+    <updated>2021-03-16T15:49:32.952Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Mrchangchang.github.io"/>
     <link rel="self" href="https://Mrchangchang.github.io/atom.xml"/>
@@ -10,6 +10,101 @@
     <logo>https://Mrchangchang.github.io/images/avatar.png</logo>
     <icon>https://Mrchangchang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[vue + ant-design-vue 项目兼容IE11浏览器（血泪踩坑）]]></title>
+        <id>https://Mrchangchang.github.io/post/vue-ant-design-vue-xiang-mu-jian-rong-ie11-liu-lan-qi-xie-lei-cai-keng/</id>
+        <link href="https://Mrchangchang.github.io/post/vue-ant-design-vue-xiang-mu-jian-rong-ie11-liu-lan-qi-xie-lei-cai-keng/">
+        </link>
+        <updated>2021-03-16T15:48:31.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="vue-cli启动项目登录成功后提示未登录">vue-cli启动项目登录成功后提示未登录</h3>
+<p>解决方法：本地服务启动访问域名localhost时，ie11不支持在localhost写入cookie，须使用ip地址。不要忘记在代理设置中cookieDomainRewrite配置为ip地址，关闭之前打开的页签重试。</p>
+<h3 id="页面报错findindex-is-not-a-function">页面报错<code>findIndex is not a function</code></h3>
+<blockquote>
+<p>es6API不存在,需要加上polyfill</p>
+</blockquote>
+<p>解决方法：webpack打包入口加上babel-polyfill或@babel/polyfill,如下</p>
+<p>entry: {<br>
+app: ['babel-polyfill', './src/main.js']<br>
+}<br>
+// vue-cli4写法<br>
+module.exports = {<br>
+chainWebpack(config) {<br>
+config.entry('main').add('@babel/polyfill')<br>
+}<br>
+}</p>
+<h3 id="第三库语法报错">第三库语法报错</h3>
+<blockquote>
+<p>经过排查，vue-cli的babel-loader默认会忽略node_modeules里面的文件，引入库的代码存在es6语法。</p>
+</blockquote>
+<p>解决方法：在vue.config.js增加transpileDependencies配置</p>
+<p>module.exports = {<br>
+transpileDependencies: ['xx']<br>
+}<br>
+​</p>
+<h3 id="增删改操作后请求数据显示来自缓存">增删改操作后，请求数据显示来自缓存</h3>
+<p>解决方法：判断是否为IE浏览器，拦截请求请求参数带上时间戳</p>
+<p>// axios<br>
+// 判断是否为ie11<br>
+const isIE = navigator.userAgent.indexOf('Trident') &gt; -1 &amp;&amp; navigator.userAgent.indexOf('rv:11.0') &gt; -1<br>
+// request 拦截<br>
+axiosX.interceptors.request.use(<br>
+config =&gt; {<br>
+if (isIE &amp;&amp; config.method.toLocaleLowerCase() === 'get') {<br>
+config.params = Object.assign({}, config.params, {t: Date.now()})<br>
+}<br>
+return config<br>
+},<br>
+err =&gt; {<br>
+return Promise.reject(err)<br>
+}<br>
+)<br>
+​</p>
+<h3 id="new-date提示invalid-date">new Date()提示invalid date</h3>
+<p>解决方法： new Date()参数中<code>-</code>替换为<code>/</code></p>
+<h3 id="vue自定义组件在父组件中使用内样式无效">vue自定义组件在父组件中使用，内样式无效</h3>
+<p>解决方法：在父组件中不要加内样式，使用class</p>
+<p>//错误姿势, 内样式不会被编译<br>
+<template></p>
+ <div>
+ <my-component style="color: #333"></my-component>
+ </div>
+</template>
+//正确姿势，使用class
+<template>
+ <div>
+ <my-component class="text3"></my-component>
+ </div>
+</template>
+<h3 id="使用ant-design-vue中input-number开发环境正常打包后不生效点击步进器报错">使用ant-design-vue中input-number开发环境正常，打包后不生效，点击步进器报错</h3>
+<p>解决方法：使用input-number组件，加上step 参数</p>
+<h3 id="使用-ant-design-vue中steps组件开发环境正常步骤序号为nan">使用 ant-design-vue中steps组件开发环境正常，步骤序号为NaN</h3>
+<p>解决方法：使用step组件，加上initial参数</p>
+<h3 id="下载文件请求参数中有中文控制台中文参数显示为乱码请求报错">下载文件请求参数中有中文，控制台中文参数显示为乱码，请求报错</h3>
+<p>解决方法：中文参数使用encodeURIComponent API编码中文参数</p>
+<h3 id="使用ant-design-vue总input-textarea点击清除icon不生效">使用ant-design-vue总input、TextArea点击清除icon不生效</h3>
+<blockquote>
+<p>input, textarea标签在maxLEngth属性设置为-1在IE中会无法粘贴</p>
+</blockquote>
+<p>解决方法：入口文件增加如下代码</p>
+<p>// mian.js<br>
+import Vue from 'vue'<br>
+import Antd, {Input} from 'ant-design-vue'<br>
+// IE11环境下Input组件清空异常 https://github.com/vueComponent/ant-design-vue/issues/2592<br>
+Vue.use(Antd)<br>
+if (!!window.ActiveXObject || 'ActiveXObject' in window) {<br>
+Input.methods.handleReset = function() {<br>
+this.stateValue = ''<br>
+this.$emit('change.value', '')<br>
+}</p>
+<p>Input.TextArea.methods.handleReset = function () {<br>
+this.stateValue = ''<br>
+this.$emit('change.value', '')<br>
+}<br>
+}</p>
+<h3 id="在ie浏览器中复制会在后面加上一个空格">在IE浏览器中复制会在后面加上一个空格</h3>
+<p>解决方法：在input中加上trim修饰符</p>
+<input v-model.trim="value"/>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[window常用命令]]></title>
         <id>https://Mrchangchang.github.io/post/window-chang-yong-ming-ling/</id>
